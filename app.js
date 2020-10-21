@@ -21,15 +21,13 @@ function listenerValue() {
     // Listener for on-load localStorage data print
     // jQuery function
     // let a = window.addEventListener('DOMContentLoaded', localStorageOnLoad)
-    // console.log("a", a);
 
     if (document.readyState !== 'loading') init()
-else document.addEventListener('DOMContentLoaded', init);
+    else document.addEventListener('DOMContentLoaded', init);
 
-function init() {
-    console.log("Do it !");
-
-}
+    function init() {
+        localStorageOnLoad()
+    }
 
 }
 
@@ -79,6 +77,9 @@ function DataRemoveValue(e) {
 
         // remove parent tag for that value
         e.target.parentElement.remove()
+
+        // Remove from Storage
+        removeTweetLocalStorage(e.target.parentElement.textContent);
     }
 
 }
@@ -86,7 +87,7 @@ function DataRemoveValue(e) {
 
 /**
  * Desc : function where we add the value in localStorage
- * @param {*} e 
+ * @param {*} dataValue
  */
 function addLocalStorage(dataValue) {
 
@@ -121,18 +122,16 @@ function getLocalStorage() {
 
 
 /**
- * Desc : calling this function from addEventListerners during remome value
- * @param {*} e 
+ * Desc : get the value from localStroage and print on load
+ * @param {*} 
  */
 function localStorageOnLoad() {
 
     // call the getLocalStorage function
     let onLoadData = getLocalStorage();
-    console.log(onLoadData);
 
     // loop for print all the data
     onLoadData.forEach(dataValue => {
-        console.log("dataValue");
 
         // add a remove button with the value
         const removeButton = document.createElement('a');
@@ -154,4 +153,27 @@ function localStorageOnLoad() {
         printData.appendChild(ol)
     });
 
+}
+
+/**
+ * Desc : calling this function from addEventListerners during remome value
+ * @param {*} 
+ */
+function removeTweetLocalStorage(tweet) {
+    // get tweets from storage
+    let tweets = getLocalStorage();
+
+    // Remove the X from the tweet
+
+    const tweetDelete = tweet.substring( 0, tweet.length - 6 );
+
+    // Loop Throught  the tweets and remove the tweet that's equal
+    tweets.forEach(function(tweetLS, index) {
+         if(tweetDelete === tweetLS) {
+              tweets.splice(index, 1);
+         }
+    });
+
+    // Save the data 
+    localStorage.setItem('names', JSON.stringify(tweets) );
 }
