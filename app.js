@@ -63,6 +63,9 @@ function DataValue(e) {
     // fn where we add the value in localStorage
     addLocalStorage(dataValue);
 
+    // reset the input
+    this.reset();
+
 
 }
 
