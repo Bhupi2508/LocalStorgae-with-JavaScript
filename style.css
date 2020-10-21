@@ -10,7 +10,7 @@
 
 .body {
     background-color: black;
-    width: 100%;
+    width: 90%;
 }
 
 .form {
@@ -20,7 +20,7 @@
 .savedData {
     color: white;
     margin-left: 55%;
-    margin-top: -9%;
+    margin-top: -12%;
 }
 
 .input {
@@ -31,4 +31,16 @@
 
 .data {
     font-size: 150%;
+}
+
+.remove-data {
+    float: right;
+    cursor: pointer;
+    color: red;
+    font-weight: bold
+}
+
+.submit {
+    margin-left: 6%;
+    margin-top: 1%;
 }
