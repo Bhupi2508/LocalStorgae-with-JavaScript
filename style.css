@@ -1,0 +1,34 @@
+.heading {
+    margin-left: 6%;
+    color: white;
+    background-color: black;
+    text-align: -webkit-center;
+    width: 32%;
+    margin-top: 4%;
+    padding: 1%;
+}
+
+.body {
+    background-color: black;
+    width: 100%;
+}
+
+.form {
+    margin-left: 16%;
+}
+
+.savedData {
+    color: white;
+    margin-left: 55%;
+    margin-top: -9%;
+}
+
+.input {
+    width: 27%;
+    font-size: 125%;
+    margin-left: -5%;
+}
+
+.data {
+    font-size: 150%;
+}
