@@ -44,3 +44,10 @@
     margin-left: 6%;
     margin-top: 1%;
 }
+
+.edit-data{
+    float: right;
+    cursor: pointer;
+    color: burlywood;
+    font-weight: bold
+}

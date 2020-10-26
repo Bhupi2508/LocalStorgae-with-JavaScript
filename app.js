@@ -18,6 +18,9 @@ function listenerValue() {
     // Listener for remove element
     printData.addEventListener('click', DataRemoveValue);
 
+    // Listener for remove element
+    printData.addEventListener('click', DataEditValue);
+
     // Listener for on-load localStorage data print
     // jQuery function
     // let a = window.addEventListener('DOMContentLoaded', localStorageOnLoad)
@@ -41,6 +44,11 @@ function DataValue(e) {
     //get the input value
     const dataValue = document.querySelector('#name').value;
 
+    // add a edit button with the value
+    const editButton = document.createElement('a');
+    editButton.classList = 'edit-data';
+    editButton.textContent = 'edit';
+
     // add a remove button with the value
     const removeButton = document.createElement('a');
     removeButton.classList = 'remove-data';
@@ -53,6 +61,9 @@ function DataValue(e) {
 
     // append the remove button with the data
     li.appendChild(removeButton)
+
+    // append the edit button with the data
+    li.appendChild(editButton)
 
     // append li tag to ol tag
     ol.appendChild(li);
@@ -86,6 +97,32 @@ function DataRemoveValue(e) {
     }
 
 }
+
+
+/**
+ * Desc : calling this function from addEventListerners during edit value
+ * @param {*} e 
+ */
+function DataEditValue(e) {
+
+    let edits;
+    let updateValue;
+
+    // find the excat value
+    if (e.target.classList.contains('edit-data')) {
+
+        // remove parent tag for that value
+        edits = e.target.parentElement.textContent
+        edits = edits.substring(0, edits.length - 10);
+
+        updateValue = prompt("Enter your updated value");
+
+        // Remove from Storage
+        editTweetLocalStorage(edits, updateValue);
+    }
+
+}
+
 
 
 /**
@@ -136,6 +173,11 @@ function localStorageOnLoad() {
     // loop for print all the data
     onLoadData.forEach(dataValue => {
 
+        // add a edit button with the value
+        const editButton = document.createElement('a');
+        editButton.classList = 'edit-data';
+        editButton.textContent = 'edit';
+
         // add a remove button with the value
         const removeButton = document.createElement('a');
         removeButton.classList = 'remove-data';
@@ -148,6 +190,9 @@ function localStorageOnLoad() {
 
         // append the remove button with the data
         li.appendChild(removeButton)
+
+        // append the edit button with the data
+        li.appendChild(editButton)
 
         // append li tag to ol tag
         ol.appendChild(li);
@@ -168,15 +213,37 @@ function removeTweetLocalStorage(tweet) {
 
     // Remove the X from the tweet
 
-    const tweetDelete = tweet.substring( 0, tweet.length - 6 );
+    const tweetDelete = tweet.substring(0, tweet.length - 6);
 
     // Loop Throught  the tweets and remove the tweet that's equal
-    tweets.forEach(function(tweetLS, index) {
-         if(tweetDelete === tweetLS) {
-              tweets.splice(index, 1);
-         }
+    tweets.forEach(function (tweetLS, index) {
+        if (tweetDelete === tweetLS) {
+            tweets.splice(index, 1);
+        }
     });
 
     // Save the data 
-    localStorage.setItem('names', JSON.stringify(tweets) );
+    localStorage.setItem('names', JSON.stringify(tweets));
+}
+
+
+/**
+ * Desc : calling this function from addEventListerners during edit value
+ * @param {*} 
+ */
+function editTweetLocalStorage(tweet, updateValue) {
+    // get tweets from storage
+    let tweets = getLocalStorage();
+
+    const tweetEdit = updateValue;
+
+    // Loop Throught  the tweets and edit the tweet that's equal
+    tweets.forEach(function (tweetLS, index) {
+       if (tweetEdit === tweetLS) {
+            tweets.
+        }
+    });
+
+    // Save the data 
+    localStorage.setItem('names', JSON.stringify(tweets));
 }
